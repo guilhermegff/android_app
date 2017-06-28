@@ -204,7 +204,16 @@ public class MainActivity extends AppCompatActivity
                             String aviso = "Avaliacao" + avaliacaoList.toString();
                             Log.e(TAG, aviso);
                             Intent tela2 = new Intent(getApplication(), Tela2.class);
-                            tela2.putExtra("ra", ra);
+                            Bundle extras = new Bundle();
+                            extras.putString("ra", ra);
+                            extras.putString("aluno", "");
+                            extras.putString("sugestao", "");
+                            extras.putString("data_hora", "");
+                            extras.putString("resp_quest1", "");
+                            extras.putString("resp_quest2", "");
+                            extras.putString("resp_quest3", "");
+                            extras.putString("resp_quest4", "");
+                            tela2.putExtras(extras);
                             startActivity(tela2);
                         }
                         else
@@ -299,6 +308,7 @@ public class MainActivity extends AppCompatActivity
     {
         String ra = edit1.getText().toString();
         String nome_escola = "Emei1";
+
         if(alunoList.isEmpty())
         {
             CadastraAluno meuCadastraAluno;
@@ -306,7 +316,16 @@ public class MainActivity extends AppCompatActivity
             Log.e(TAG, "Tem que cadastrar" );
             meuCadastraAluno.execute(ra, nome_escola);
             Intent tela2 = new Intent(this, Tela2.class);
-            tela2.putExtra("ra", ra);
+            Bundle extras = new Bundle();
+            extras.putString("ra", ra);
+            extras.putString("aluno", "");
+            extras.putString("sugestao", "");
+            extras.putString("data_hora", "");
+            extras.putString("resp_quest1", "");
+            extras.putString("resp_quest2", "");
+            extras.putString("resp_quest3", "");
+            extras.putString("resp_quest4", "");
+            tela2.putExtras(extras);
             startActivity(tela2);
         }
         else
@@ -324,8 +343,6 @@ public class MainActivity extends AppCompatActivity
         BuscaAvaliacao meuBuscaAvaliacao;
         meuBuscaAvaliacao = new BuscaAvaliacao();
         meuBuscaAvaliacao.execute(url, ra);
-
-
     }
 }
 
