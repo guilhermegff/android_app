@@ -28,7 +28,7 @@
         android:layout_below="@id/image1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="O que você achou da alimentação escolar hoje?"
+        android:text="@string/tela2text"
 
         />
 
@@ -50,7 +50,7 @@
         android:id="@+id/botaoResp2"
         android:layout_below="@id/botaoResp1"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/resp1"
+        android:src="@drawable/resp2"
         android:onClick="pegaResp"
 
         />
@@ -61,7 +61,7 @@
         android:id="@+id/botaoResp3"
         android:layout_below="@id/botaoResp2"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/resp1"
+        android:src="@drawable/resp3"
         android:onClick="pegaResp"
 
         />
@@ -72,7 +72,7 @@
         android:id="@+id/botaoResp4"
         android:layout_below="@id/botaoResp3"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/resp1"
+        android:src="@drawable/resp4"
         android:onClick="pegaResp"
 
         />

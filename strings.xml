@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Avaliação Alimentar</string>
+    <string name="telaInicialText">Já avaliou hoje. Espere até amanhã!</string>
+    <string name="telaInicialText2">Avaliação Alimentar</string>
+    <string name="tela2text">O que você achou da alimentação escolar hoje?</string>
+    <string name="tela3text1_telaSugText1">Parece que ainda temos o que melhorar</string>
+    <string name="tela3text2_telaSugText2">Gostaríamos de saber o que precisamos melhorar na alimentação escolar</string>
+    <string name="tela4text">Por que você não consumiu a alimentação escolar hoje?</string>
+    <string name="telaFinalText1">Obrigado pela sua avaliação</string>
+    <string name="telaFinalText2">Estamos trabalhando para melhorar ainda mais a sua alimentação escolar.</string>
+    <string name="telaFinalText3">Continue avaliando todos os dias, você só tem a ganhar.</string>
+</resources>

@@ -30,6 +30,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TelaSugestao extends AppCompatActivity
 {
@@ -51,12 +53,43 @@ public class TelaSugestao extends AppCompatActivity
     }
     public void pegaSugestao(View v)
     {
-        String sugestão = edit3.getText().toString();
+        String sugestao = edit3.getText().toString();
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        extras.putString("sugestao", sugestão);
-        Intent telafinal = new Intent(this, TelaFinal.class);
-        telafinal.putExtras(extras);
-        startActivity(telafinal);
+        if(validaSugestao(sugestao))
+        {
+            extras.putString("sugestao", sugestao);
+            Intent telaFinal = new Intent(this, TelaFinal.class);
+            telaFinal.putExtras(extras);
+            startActivity(telaFinal);
+        }
+        else
+        {
+            return;
+        }
+    }
+    public boolean validaSugestao (String sugestao)
+    {
+        String regex = "^[a-z_A-Z0-9 ]*$";
+        CharSequence entrada = sugestao;
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(entrada);
+
+        if(sugestao.length() == 0)
+        {
+            edit3.setError("Escreva a Sugestão");
+            return false;
+        }
+        else if(sugestao.length() > 200)
+        {
+            edit3.setError("Máx 200 letras");
+            return false;
+        }
+        else if(!matcher.matches())
+        {
+            edit3.setError("Erro no texto");
+            return false;
+        }
+        return true;
     }
 }

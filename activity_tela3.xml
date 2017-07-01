@@ -11,24 +11,13 @@
     android:background="@drawable/tela1"
     tools:context="com.example.guilherme.avaliacaoalimentar.Tela3">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp"
-        android:id="@+id/image2"
-        android:src="@drawable/tela2"
-
-        />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/text2"
-        android:layout_below="@id/image2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="Parece que ainda temos o que melhorar"
+        android:text="@string/tela3text1_telaSugText1"
 
         />
 
@@ -38,7 +27,8 @@
         android:id="@+id/text3"
         android:layout_below="@id/text2"
         android:layout_centerHorizontal="true"
-        android:text="Gostaríamos de saber o que precisamos melhorar na alimentação escolar"
+        android:textAlignment="center"
+        android:text="@string/tela3text2_telaSugText2"
 
         />
 
@@ -48,7 +38,7 @@
         android:id="@+id/botaoResp5"
         android:layout_below="@id/text3"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/resp1"
+        android:src="@drawable/resp5"
         android:layout_marginTop="130dp"
         android:onClick="pegaResp"
 
@@ -60,7 +50,7 @@
         android:id="@+id/botaoResp6"
         android:layout_below="@id/botaoResp5"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/resp1"
+        android:src="@drawable/resp6"
         android:onClick="pegaResp"
 
         />
@@ -71,7 +61,7 @@
         android:id="@+id/botaoResp7"
         android:layout_below="@id/botaoResp6"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/resp1"
+        android:src="@drawable/resp7"
         android:onClick="pegaResp"
 
         />
@@ -82,9 +72,8 @@
         android:id="@+id/botaoResp8"
         android:layout_below="@id/botaoResp7"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/resp1"
+        android:src="@drawable/resp8"
         android:onClick="pegaResp"
 
         />
-
 </RelativeLayout>

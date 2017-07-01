@@ -8,26 +8,17 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/tela1"
     tools:context="com.example.guilherme.avaliacaoalimentar.MainActivity">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Almentação Escolar"
+        android:id="@+id/text12"
+        android:text="@string/telaInicialText2"
         android:layout_centerHorizontal="true"
-
-        />
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/botao1"
-        android:text="verifica"
-        android:onClick="verificaAluno"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
 
         />
 
@@ -37,8 +28,9 @@
         android:inputType="number"
         android:id="@+id/edit1"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
         android:hint="Digite o RA"
-        android:layout_below="@id/botao1"
+        android:layout_below="@id/text12"
 
         />
 
@@ -52,5 +44,28 @@
 
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/botao1"
+        android:layout_below="@id/edit2"
+        android:layout_marginTop="50dp"
+        android:text="Verificar Aluno"
+        android:onClick="verificaAluno"
+        android:layout_centerHorizontal="true"
 
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text11"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_below="@id/botao1"
+        android:visibility="invisible"
+        style="@style/styleTelaFinal"
+        android:text="@string/telaInicialText"
+
+        />
 </RelativeLayout>

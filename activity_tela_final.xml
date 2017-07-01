@@ -15,9 +15,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="130dp"
         android:id="@+id/image4"
-        android:src="@drawable/tela2"
+        android:src="@drawable/telafinal1"
 
         />
 
@@ -26,8 +26,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/text8"
         android:layout_below="@id/image4"
+        android:layout_marginTop="150dp"
         android:layout_centerHorizontal="true"
-        android:text="Obrigado pela sua avaliação"
+        android:text="@string/telaFinalText1"
+        android:textAlignment="center"
+        style="@style/styleTelaFinal"
 
         />
 
@@ -37,7 +40,10 @@
         android:id="@+id/text9"
         android:layout_below="@id/text8"
         android:layout_centerHorizontal="true"
-        android:text="Estamos trabalhando para melhorar ainda mais a sua alimentação escolar."
+        android:text="@string/telaFinalText2"
+        android:textAlignment="center"
+        style="@style/styleTelaFinal"
+
 
         />
 
@@ -47,17 +53,9 @@
         android:id="@+id/text10"
         android:layout_below="@id/text9"
         android:layout_centerHorizontal="true"
-        android:text="Continue avaliando todos os dias, você só tem a ganhar."
-
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text11"
-        android:layout_below="@id/text10"
-        android:layout_centerHorizontal="true"
-        android:text="Continue avaliando todos os dias, você só tem a ganhar."
+        android:textAlignment="center"
+        android:text="@string/telaFinalText3"
+        style="@style/styleTelaFinal"
 
         />
 
@@ -65,10 +63,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/botaoConcluir"
-        android:layout_below="@id/text11"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/text10"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/resp1"
-        android:onClick="pegaResp"
+        android:src="@drawable/telafinal2"
+        android:onClick="botaoConcluir"
 
         />
 </RelativeLayout>

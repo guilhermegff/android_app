@@ -62,41 +62,41 @@ public class Tela4 extends AppCompatActivity
 
         if(v.getId() == R.id.botaoResp9)
         {
-            Intent telafinal = new Intent(this, TelaFinal.class);
+            Intent telaFinal = new Intent(this, TelaFinal.class);
             String resp = v.findViewById(v.getId()).toString();
             Log.e(TAG, resp);
-            extras.putString("resp_quest3", "1");
-            telafinal.putExtras(extras);
-            startActivity(telafinal);
+            extras.putString("resp_quest3", "9");
+            telaFinal.putExtras(extras);
+            startActivity(telaFinal);
 
         }
         else if(v.getId() == R.id.botaoResp10)
         {
-            Intent telasugestao = new Intent(this, TelaSugestao.class);
+            Intent telaSugestao = new Intent(this, TelaSugestao.class);
             String resp = v.findViewById(v.getId()).toString();
             Log.e(TAG, resp);
-            extras.putString("resp_quest3", "2");
-            telasugestao.putExtras(extras);
-            startActivity(telasugestao);
+            extras.putString("resp_quest3", "10");
+            telaSugestao.putExtras(extras);
+            startActivity(telaSugestao);
         }
 
         else if (v.getId() == R.id.botaoResp11)
         {
-            Intent telasugestao = new Intent(this, TelaSugestao.class);
+            Intent telaSugestao = new Intent(this, TelaSugestao.class);
             String resp = v.findViewById(v.getId()).toString();
             Log.e(TAG, resp);
-            extras.putString("resp_quest3", "3");
-            telasugestao.putExtras(extras);
-            startActivity(telasugestao);
+            extras.putString("resp_quest3", "11");
+            telaSugestao.putExtras(extras);
+            startActivity(telaSugestao);
         }
         else
         {
-            Intent telafinal = new Intent(this, TelaFinal.class);
+            Intent telaFinal = new Intent(this, TelaFinal.class);
             String resp = v.findViewById(v.getId()).toString();
             Log.e(TAG, resp);
-            extras.putString("resp_quest3", "4");
-            telafinal.putExtras(extras);
-            startActivity(telafinal);
+            extras.putString("resp_quest3", "12");
+            telaFinal.putExtras(extras);
+            startActivity(telaFinal);
         }
     }
 }

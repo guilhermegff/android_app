@@ -17,7 +17,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="90dp"
         android:id="@+id/image3"
-        android:src="@drawable/tela2"
+        android:src="@drawable/tela4icone"
 
         />
 
@@ -28,7 +28,7 @@
         android:layout_below="@id/image3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="Por que você não consumiu a alimentação escolar hoje?"
+        android:text="@string/tela4text"
 
         />
 
@@ -38,7 +38,7 @@
         android:id="@+id/botaoResp9"
         android:layout_below="@id/text4"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/resp1"
+        android:src="@drawable/resp9"
         android:layout_marginTop="130dp"
         android:onClick="pegaResp"
 
@@ -50,7 +50,7 @@
         android:id="@+id/botaoResp10"
         android:layout_below="@id/botaoResp9"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/resp1"
+        android:src="@drawable/resp10"
         android:onClick="pegaResp"
 
         />
@@ -61,7 +61,7 @@
         android:id="@+id/botaoResp11"
         android:layout_below="@id/botaoResp10"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/resp1"
+        android:src="@drawable/resp11"
         android:onClick="pegaResp"
 
         />
@@ -72,9 +72,8 @@
         android:id="@+id/botaoResp12"
         android:layout_below="@id/botaoResp11"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/resp1"
+        android:src="@drawable/resp12"
         android:onClick="pegaResp"
 
         />
-
 </RelativeLayout>

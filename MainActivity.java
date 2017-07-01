@@ -7,25 +7,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import android.os.StrictMode;
 import android.content.Intent;
-
-import android.content.Intent;
-
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.BufferedReader;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -38,6 +28,8 @@ public class MainActivity extends AppCompatActivity
 
     Button botao1;
     EditText edit1;
+    EditText edit2;
+    TextView text11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,6 +41,9 @@ public class MainActivity extends AppCompatActivity
 
         botao1 = (Button)findViewById(R.id.botao1);
         edit1 = (EditText)findViewById(R.id.edit1);
+        text11 = (TextView)findViewById(R.id.text11);
+
+        edit2 = (EditText)findViewById(R.id.edit2);
         alunoList = new ArrayList<>();
         avaliacaoList = new ArrayList<>();
 
@@ -63,7 +58,7 @@ public class MainActivity extends AppCompatActivity
     protected void onPreExecute()
     {
         super.onPreExecute();
-        Toast.makeText(MainActivity.this, "Verificando Aluno!", Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this, "Verificando Aluno!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -80,28 +75,34 @@ public class MainActivity extends AppCompatActivity
             Log.e(TAG, "Dentro if " + jsonStr1);
             try
             {
-                final String jsonStr = "{results: ["+jsonStr1+"]}";
+                final String jsonStr = jsonStr1;
                 Log.e(TAG, jsonStr);
                 final JSONObject jsonObj = new JSONObject(jsonStr);
                 Log.e(TAG, jsonObj.toString() + jsonStr);
                 final JSONArray results = jsonObj.getJSONArray("results");
                 Log.e(TAG, "JsonArray: " + results.toString());
-                for (int i = 0; i < results.length(); i++)
+                if(results.length() > 0)
                 {
-                    final JSONObject resultado = results.getJSONObject(i);
-                    Log.e(TAG, resultado.toString());
-                    final String id = resultado.getString("id");
-                    final String ra = resultado.getString("ra");
-                    final String nome_escola = resultado.getString("nome_escola");
+                    for (int i = 0; i < results.length(); i++) {
+                        final JSONObject resultado = results.getJSONObject(i);
+                        Log.e(TAG, resultado.toString());
+                        final String id = resultado.getString("id");
+                        final String ra = resultado.getString("ra");
+                        final String nome_escola = resultado.getString("nome_escola");
 
-                    HashMap<String, String> aluno = new HashMap<>();
-                    aluno.clear();
+                        HashMap<String, String> aluno = new HashMap<>();
+                        aluno.clear();
 
-                    aluno.put("id", id);
-                    aluno.put("ra", ra);
-                    aluno.put("nome_escola", nome_escola);
-                    Log.e(TAG, aluno.toString());
-                    alunoList.add(aluno);
+                        aluno.put("id", id);
+                        aluno.put("ra", ra);
+                        aluno.put("nome_escola", nome_escola);
+                        Log.e(TAG, aluno.toString());
+                        alunoList.add(aluno);
+                    }
+                }
+                else
+                {
+                    cadastroAluno();
                 }
 
             }
@@ -121,22 +122,20 @@ public class MainActivity extends AppCompatActivity
         else
         {
             Log.e(TAG, "Null Response");
-            cadastroAluno();
         }
-
         return null;
     }
     @Override
     protected void onPostExecute(Void result)
     {
         super.onPostExecute(result);
-        Toast.makeText(MainActivity.this, "Aluno Verificado!" , Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this, "Aluno Verificado!" , Toast.LENGTH_SHORT).show();
         if(alunoList.isEmpty() == false)
         {
 
-            String ra = alunoList.get(0).get("id").toString();
-            Log.e(TAG, "verificaAluno" + ra);
-            verificaAvaliacao(ra);
+            String aluno_id = alunoList.get(0).get("id").toString();
+            Log.e(TAG, "verificaAluno" + aluno_id);
+            verificaAvaliacao(aluno_id);
         }
     }
 }
@@ -147,7 +146,7 @@ public class MainActivity extends AppCompatActivity
         protected void onPreExecute()
         {
             super.onPreExecute();
-            Toast.makeText(MainActivity.this, "Verificando Data!", Toast.LENGTH_LONG).show();
+            //Toast.makeText(MainActivity.this, "Verificando Data!", Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -155,7 +154,7 @@ public class MainActivity extends AppCompatActivity
         {
             HttpHandler sh = new HttpHandler();
             String url = params[0];
-            String ra = params[1];
+            String aluno_id = params[1];
             final String jsonStr = sh.makeServiceCall(url);
             avaliacaoList.clear();
             Log.e(TAG, "Response from url Avaliacao: " + jsonStr);
@@ -173,7 +172,7 @@ public class MainActivity extends AppCompatActivity
                     if (results.length() > 0)
                     {
                         Log.e(TAG, "JsonArray: " + results.toString());
-                        for (int i = 0; i < results.length(); i++)
+                        /*for (int i = 0; i < results.length(); i++)
                         {
                             final JSONObject resultado = results.getJSONObject(i);
                             Log.e(TAG, resultado.toString());
@@ -195,35 +194,27 @@ public class MainActivity extends AppCompatActivity
                             avaliacao.put("resp_quest3", resp_quest3);
                             avaliacaoList.add(avaliacao);
                             Log.e(TAG, avaliacao.toString());
-                        }
+                        }*/
                     }
                     else
                     {
-                        if(avaliacaoList.isEmpty())
-                        {
-                            String aviso = "Avaliacao" + avaliacaoList.toString();
-                            Log.e(TAG, aviso);
-                            Intent tela2 = new Intent(getApplication(), Tela2.class);
-                            Bundle extras = new Bundle();
-                            extras.putString("ra", ra);
-                            extras.putString("aluno", "");
-                            extras.putString("sugestao", "");
-                            extras.putString("data_hora", "");
-                            extras.putString("resp_quest1", "");
-                            extras.putString("resp_quest2", "");
-                            extras.putString("resp_quest3", "");
-                            extras.putString("resp_quest4", "");
-                            tela2.putExtras(extras);
-                            startActivity(tela2);
-                        }
-                        else
-                        {
-                            Log.e(TAG, "Já votou hoje.");
-                        }
+                        Intent tela2 = new Intent(getApplication(), Tela2.class);
+                        Bundle extras = new Bundle();
+                        extras.putString("ra", aluno_id);
+                        tela2.putExtras(extras);
+                        startActivity(tela2);
+                        return null;
                     }
-
-
                     Log.e(TAG, "Saindo");
+                    Log.e(TAG, "Já votou hoje.");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            text11.setVisibility(View.VISIBLE);
+                        }
+                    });
+
+
                 }
                 catch (final JSONException e)
                 {
@@ -239,7 +230,6 @@ public class MainActivity extends AppCompatActivity
             else
             {
                 Log.e(TAG, "Null Response");
-
             }
             return null;
         }
@@ -247,8 +237,7 @@ public class MainActivity extends AppCompatActivity
         protected void onPostExecute(Void result)
         {
             super.onPostExecute(result);
-            Toast.makeText(MainActivity.this, "Aluno Verificado!" , Toast.LENGTH_LONG).show();
-
+            //Toast.makeText(MainActivity.this, "Aluno Verificado!" , Toast.LENGTH_LONG).show();
         }
     }
 
@@ -268,19 +257,16 @@ public class MainActivity extends AppCompatActivity
             HttpHandler sh = new HttpHandler();
             String resposta = "";
 
-            String url = "http://aptwi.herokuapp.com/alunos.json";
             try
             {
-
-                resposta = sh.requestPost(url, info[0], info[1]);
+                resposta = sh.requestPostAluno(info[0], info[1]);
             }
             catch (final Exception e)
             {
-                Log.e(TAG, "Couldn't get json from server." + e.toString());
+                Log.e(TAG, "Não recuperou o Json " + e.toString());
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat" + e.toString(), Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -297,17 +283,27 @@ public class MainActivity extends AppCompatActivity
     public void verificaAluno(View v)
     {
         String ra = edit1.getText().toString();
-        String url = "http://aptwi.herokuapp.com/aluno/"+ra+".json";
-        BuscaAluno meuBuscaAluno;
-        meuBuscaAluno = new BuscaAluno();
-        meuBuscaAluno.execute(url);
+        String nome_escola = edit2.getText().toString();
+        text11.setVisibility(View.INVISIBLE);
+        if(validaEntrada(ra, nome_escola))
+        {
+            String url = "http://aptwi.herokuapp.com/alunos/" + ra + ".json";
+            BuscaAluno meuBuscaAluno;
+            meuBuscaAluno = new BuscaAluno();
+            meuBuscaAluno.execute(url);
+        }
+        else
+        {
+            return;
+        }
 
     }
 
     public void cadastroAluno()
     {
         String ra = edit1.getText().toString();
-        String nome_escola = "Emei1";
+        String nome_escola = edit2.getText().toString();
+
 
         if(alunoList.isEmpty())
         {
@@ -315,16 +311,10 @@ public class MainActivity extends AppCompatActivity
             meuCadastraAluno = new CadastraAluno();
             Log.e(TAG, "Tem que cadastrar" );
             meuCadastraAluno.execute(ra, nome_escola);
+
             Intent tela2 = new Intent(this, Tela2.class);
             Bundle extras = new Bundle();
             extras.putString("ra", ra);
-            extras.putString("aluno", "");
-            extras.putString("sugestao", "");
-            extras.putString("data_hora", "");
-            extras.putString("resp_quest1", "");
-            extras.putString("resp_quest2", "");
-            extras.putString("resp_quest3", "");
-            extras.putString("resp_quest4", "");
             tela2.putExtras(extras);
             startActivity(tela2);
         }
@@ -336,14 +326,49 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void verificaAvaliacao(String ra)
+    public void verificaAvaliacao(String aluno_id)
     {
-        String url = "http://aptwi.herokuapp.com/avaliacoesData/"+ra+".json";
-
+        String url = "http://aptwi.herokuapp.com/avaliacoesData/"+aluno_id+".json";
         BuscaAvaliacao meuBuscaAvaliacao;
         meuBuscaAvaliacao = new BuscaAvaliacao();
-        meuBuscaAvaliacao.execute(url, ra);
+        meuBuscaAvaliacao.execute(url, aluno_id);
     }
+
+    public boolean validaEntrada(String ra, String nome_escola)
+    {
+        String regex = "^[a-z_A-Z0-9 ]*$";
+        CharSequence entrada = nome_escola;
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(entrada);
+
+        if(ra.length() == 0)
+        {
+            edit1.setError("Digite o RA");
+            return false;
+        }
+        else if(ra.length() > 5)
+        {
+            edit1.setError("Máx 5 números");
+            return false;
+        }
+        if(nome_escola.length() == 0)
+        {
+            edit2.setError("Digite o Nome da Escola");
+            return false;
+        }
+        else if(!matcher.matches())
+        {
+            edit2.setError("Erro no texto");
+            return false;
+        }
+        else if(nome_escola.length() > 20)
+        {
+            edit2.setError("Máx 20 letras");
+            return false;
+        }
+        return true;
+    }
+
 }
 
 

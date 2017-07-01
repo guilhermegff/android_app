@@ -11,14 +11,13 @@
     android:background="@drawable/tela1"
     tools:context="com.example.guilherme.avaliacaoalimentar.TelaSugestao">
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/text5"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="Parece que ainda temos o que melhorar?"
+        android:layout_marginTop="130dp"
+        android:text="@string/tela3text1_telaSugText1"
 
         />
 
@@ -28,7 +27,8 @@
         android:id="@+id/text6"
         android:layout_below="@id/text5"
         android:layout_centerHorizontal="true"
-        android:text="Gostaríamos de saber o que precisamos na alimentação escolar"
+        android:textAlignment="center"
+        android:text="@string/tela3text2_telaSugText2"
 
         />
 
@@ -42,17 +42,15 @@
 
         />
 
-
-
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/botaoProximo"
         android:layout_below="@id/edit3"
+        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/resp1"
+        android:src="@drawable/telasugestao1"
         android:onClick="pegaSugestao"
 
         />
-
 </RelativeLayout>
